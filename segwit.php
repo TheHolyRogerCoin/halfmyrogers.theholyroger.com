@@ -1,5 +1,7 @@
 <?php
+$ReadyToInclude = true;
 require_once 'jsonRPCClient.php';
+require_once 'config.php';
 
 define("BIP9_TOPBITS_BLOCK_VERSION", 0x20000000);
 define("CSV_SEGWIT_BLOCK_VERSION",   0x20000003);
@@ -14,9 +16,9 @@ define("BLOCKS_PER_DAY",             576);
 $mem = new Memcached();
 $mem->addServer("127.0.0.1", 11211) or die("Unable to connect to Memcached.");
 
-$litecoin = new jsonRPCClient('http://user:pass@127.0.0.1:9332/');
-$blockCount = $litecoin->getblockcount();
-$blockChainInfo = $litecoin->getblockchaininfo();
+$CoinRPC = new jsonRPCClient($RPCHost);
+$blockCount = $CoinRPC->getblockcount();
+$blockChainInfo = $CoinRPC->getblockchaininfo();
 
 $activeSFs = GetSoftforks($blockChainInfo["softforks"], true);
 $activeBIP9SFs = GetBIP9Softforks($blockChainInfo["bip9_softforks"], "active");
@@ -65,9 +67,9 @@ if ($_GET['q'] == "json") {
 	include_once("analyticstracking.php");
 }
 
-CheckBlocks($blockHeight, $blockCount, $mem, $litecoin, $blocksSincePeriodStart);
-CheckBlocks($blockHeight576, $blockCount, $mem, $litecoin, BLOCKS_PER_DAY, '_576');
-CheckBlocks($blockHeight8064, $blockCount, $mem, $litecoin, BLOCK_SIGNAL_INTERVAL, '_8064');
+CheckBlocks($blockHeight, $blockCount, $mem, $CoinRPC, $blocksSincePeriodStart);
+CheckBlocks($blockHeight576, $blockCount, $mem, $CoinRPC, BLOCKS_PER_DAY, '_576');
+CheckBlocks($blockHeight8064, $blockCount, $mem, $CoinRPC, BLOCK_SIGNAL_INTERVAL, '_8064');
 $mem->set('versions', $versions);
 
 if ($verbose) {
@@ -339,10 +341,10 @@ function GetSegwitStatus($status)
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Litecoin Segregated Witness Website">
+	<meta name="description" content="TheHolyRogerCoin Segregated Witness Website">
 	<meta name="author" content="">
 	<link rel="icon" href="favicon.ico">
-	<title>Litecoin Segregated Witness Adoption Tracker</title>
+	<title>TheHolyRogerCoin Segregated Witness Adoption Tracker</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/flipclock.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -362,9 +364,9 @@ function GetSegwitStatus($status)
 				<?php
 						$text = "";
 						if ($segwitStatus == "locked_in") {
-							$text = 'SegWit for Litecoin has succesfully locked in! A big thank you to the Litecoin/Bitcoin communities, the Litecoin/Bitcoin developers and the miners for making this possible! After activation period 7, SegWit for Litecoin will be active.';
+							$text = 'SegWit for TheHolyRogerCoin has succesfully locked in! A big thank you to the Litecoin/Bitcoin communities, the Litecoin/Bitcoin developers and the miners for making this possible! After activation period 7, SegWit for Litecoin will be active.';
 						} else if ($segwitStatus == "active") {
-							$text = 'SegWit for Litecoin has succesfully activated! A big thank you to the Litecoin/Bitcoin communities, the Litecoin/Bitcoin developers and the miners for making this possible! Arise chickun!';
+							$text = 'SegWit for TheHolyRogerCoin has succesfully activated! A big thank you to the Litecoin/Bitcoin communities, the Litecoin/Bitcoin developers and the miners for making this possible! Arise chickun!';
 						}
 						echo '<b>'. $text . '</b>';
 				 ?>
@@ -437,7 +439,7 @@ function GetSegwitStatus($status)
 			echo '<h4><b>' . $displayText . '</b></h4>';
 		}
 		?>
-		<img src="../images/litecoin.png" width="125px" height="125px">
+		<img src="../images/logo.png" width="125px" height="125px">
 	</div>
 	<br/>
 	<footer>

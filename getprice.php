@@ -1,7 +1,7 @@
 <?php
-$data = file_get_contents('https://apiv2.bitcoinaverage.com/indices/global/ticker/LTCUSD');
+$data = file_get_contents('https://altmarkets.io/api/v2/tickers/rogerbtc');
 $price = json_decode($data, true);
-$ltcPrice = (float)$price["last"];
+$coinPrice = (float)$price["ticker"]["last"];
 
 if ($price <= 1.0) {
 	die(); 
@@ -9,6 +9,6 @@ if ($price <= 1.0) {
 
 $file = "price.txt";
 $fh = fopen($file, 'w') or die("can't open file");
-fwrite($fh, $ltcPrice);
+fwrite($fh, $coinPrice);
 fclose($fh);
 ?>
