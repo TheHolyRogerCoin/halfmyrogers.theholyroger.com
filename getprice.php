@@ -1,5 +1,5 @@
 <?php
-$data = file_get_contents('https://altmarkets.io/api/v2/tickers/rogerbtc');
+$data = file_get_contents('https://v2.altmarkets.io/api/v2/peatio/public/markets/rogerbtc/tickers');
 $price = json_decode($data, true);
 $coinPrice = (float)$price["ticker"]["last"];
 
