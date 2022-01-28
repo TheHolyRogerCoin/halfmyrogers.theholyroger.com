@@ -31,7 +31,7 @@ $blockReward = CalculateRewardPerBlock($blockStartingReward, $blocks, $blockHalv
 $coinsRemaining = $blocksRemaining * $blockReward;
 $nextHalvingHeight = $blocks + $blocksRemaining;
 $inflationRate = CalculateInflationRate($coins, $blockReward, $blocksPerDay);
-$inflationRateNextHalving = CalculateInflationRate(CalculateTotalCoins($blockStartingReward, $nextHalvingHeight, $blockHalvingSubsidy), 
+$inflationRateNextHalving = CalculateInflationRate(CalculateTotalCoins($blockStartingReward, $nextHalvingHeight, $blockHalvingSubsidy, $premineCoins), 
 	CalculateRewardPerBlock($blockStartingReward, $nextHalvingHeight, $blockHalvingSubsidy), $blocksPerDay);
 $price = GetPrice(); // change to dynamic way of getting price
 $priceFormatted = FormatPrice($price); // change to dynamic way of getting price
