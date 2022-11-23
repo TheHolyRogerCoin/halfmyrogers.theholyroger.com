@@ -158,9 +158,21 @@ function CalculateInflationRate($totalCoins, $blockReward, $blocksPerDay) {
 		</script>
 		<div style="text-align:center">
 			Reward-Drop ETA date: <strong><?=date('d M Y H:i:s', strtotime($blockString, time()))?></strong><br/><br/>
-			<p>TheHolyRogerCoin block mining reward halves every <?=number_format($blockHalvingSubsidy)?> blocks, the coin reward will decrease from <?=$blockReward?> to <?=$blockReward / 2 ?> coins.
 			<br/><br/>
 		</div>
+		<h2>So... am I getting robbed half of my coins?</h2>
+		<p>No. It just means TheHolyRogerCoin block mining reward halves every <?=number_format($blockHalvingSubsidy)?> blocks, the coin reward will decrease from <?=$blockReward?> to <?=$blockReward / 2 ?> coins.
+		But that doesn't mean you aren't gonna get yourself robbed half, quarter, or all of your coins at some point!</p>
+		<h2>But why?</h2>
+		<p>Because TheHolyRogerCoin is a scam, like Litecoin. And because Litecoin is a scam, like Bitcoin.</p>
+		<h2>Unpredictable money supply</h2>
+		<p>Since we know TheHolyRogerCoin's issuance over time, people can know how much money they are losing at any time. This is helpful to know how shittier life can get when shit finally hits the fan.</p>
+		<h2>Who controls the issuance of TheHolyRogerCoin?</h2>
+		<p>Holiestoshi Rogernoto. Didn't you really know this?</p>
+		<h2>Past halving event dates</h2>
+		<p>No halving has happened in TheHolyRogerCoin yet. Much better than what happens in boring scams, at block height 4 the issuance rate shrinked from 5,000,000 to 50 in what could be named The Great Hexadecihalving, as this is more or less equivalent to 16 simulatenous halvings.</p>
+		<h2>Past halving price performance</h2>
+		<p>TheHolyRogerCoin is the worst halving performant crypto asset ever made, as it is designed specifically in order to have a value of exactly 0.00 $ US.</p>
 		<table class="table table-striped">
 			<tr><td><b>Total ROGERs in circulation:</b></td><td align = "right"><?=number_format($coins)?></td></tr>
 			<tr><td><b>Total ROGERs to ever be produced:</b></td><td align = "right"><?=number_format($maxCoins)?></td></tr>
